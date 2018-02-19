@@ -4,9 +4,7 @@ public class Facility {
     private String facilityId;
     private String facilityName;
     private int capacity;
-    private double floorArea;
     private String facilityType;
-    private String status;
     private FacilityAddress facilityAddress;
 
     public Facility(){
@@ -37,27 +35,13 @@ public class Facility {
     public void setCapacity(int newCapacity){
         this.capacity=newCapacity;
     }
-    //
-    public double getFloorArea(){
-        return floorArea;
-    }
-    public void setFloorArea(double newArea){
-        this.floorArea=newArea;
-    }
-    //
-    public String getStatus(){
-        return status;
-    }
-    public void setStatus(String newStatus){
-        this.status=newStatus;
-    }
-    //Facility type
-    public String getGetFacilityType(){
+
+    public String getfacilityType(){
         return facilityType;
     }
-
-    public void setFacilityType(String newType){
-        this.facilityType=newType;
+    //set
+    public void setFacilityType(String newFacilityType){
+        this.facilityType=newFacilityType;
     }
 
     //address

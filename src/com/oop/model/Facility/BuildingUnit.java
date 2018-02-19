@@ -5,7 +5,8 @@ public class BuildingUnit extends Facility {
     private String unitId;
     private String buildingId;
     private int floorLevel;
-    private int numOfUnits;
+    private double floorArea;
+    private String status;
     //private int numOfRooms;
 
     public BuildingUnit(){
@@ -20,14 +21,13 @@ public class BuildingUnit extends Facility {
     public void setUnitId(String newUnitId){
         this.unitId=newUnitId;
     }
-    //
     public String getBuildingId(){
         return buildingId;
     }
     public void setBuildingId(String newBuildingId){
         this.buildingId=newBuildingId;
     }
-    //
+
     public int getFloorLevel(){
         return floorLevel;
     }
@@ -35,12 +35,21 @@ public class BuildingUnit extends Facility {
     public void setFloorLevel(int newFloorLevel){
         this.floorLevel=newFloorLevel;
     }
-    //number of units
-    public int getNumOfUnits(){
-        return numOfUnits;
+
+    public double getFloorArea(){
+        return floorArea;
     }
-    public void setNumOfUnits(int newNumOfUnits){
-        this.numOfUnits=newNumOfUnits;
+
+    public void setFloorArea(double newFloorArea){
+        this.floorArea=newFloorArea;
+    }
+
+    public String getStatus(){
+        return status;
+    }
+
+    public void setStatus(String newStatus){
+        this.status=newStatus;
     }
 
 }
