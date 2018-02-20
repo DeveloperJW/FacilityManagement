@@ -2,6 +2,7 @@ package com.oop.dal;
 //need to add couple of imports
 import com.oop.model.Facility.BuildingUnit;
 import com.oop.model.Facility.Facility;
+import com.oop.model.FacilityUse.FacilitySchedule;
 import com.oop.model.FacilityUse.Inspection;
 
 import java.sql.Connection;
@@ -22,12 +23,24 @@ public class FacilityUseDAO {
     /**
      * Check if the unit is in use during a certain time period
      */
-    public boolean isInUseDuringInterval(Date start, Date end){
+    public boolean isInUseDuringInterval(String someUnitId, Date start, Date end){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
-        Boolean isUsing =false;
+        Boolean isUsing =true;
         try{
-
+            String isInUseStm="SELECT startDateTime, endDateTime FROM FacilitySchedule WHERE unitId='someUnitId'";
+            ResultSet isInUseRS= stmt.executeQuery(isInUseStm);
+            System.out.println("FacilityUseDAO: *************** Query \" + isInUseQuery);");
+            while(isInUseRS.next()){
+                Date currentStart=isInUseRS.getDate("startTimeDate");
+                Date currentEnd=isInUseRS.getDate("endTimeDate");
+                if(start.getTime()<currentStart.getTime() && end.getTime()<currentStart.getTime()){
+                    isUsing=false;
+                }
+                else if(start.getTime()>currentEnd.getTime()){
+                    isUsing=false;
+                }
+            }
 
         }
         catch (SQLException se) {
@@ -79,12 +92,15 @@ public class FacilityUseDAO {
     /**
      * vacateFacility()
      */
-    //TODO: need
     public boolean vacateFacility(Facility facility){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
-        try{
+        PreparedStatement vacatePst=null;
+        String vacateStm="DELETE * FROM FacilitySchedule WHERE unitId='?'";
 
+        try{
+            vacatePst=con.prepareStatement(vacateStm);
+            vacatePst.executeUpdate();
         }
         catch (SQLException se) {
             System.err.println("FacilityUseDAO: Threw a SQLException retrieving the facility object.");
@@ -135,13 +151,27 @@ public class FacilityUseDAO {
     }
 
     /**
-     * listActualUsage()
+     * listActualUsage() display all the current facility schedule
      */
-    //TODO: change List<String>
-    public List<String> listActualUsage(){
+    public List<FacilitySchedule> listActualUsage(){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
+        PreparedStatement listUsagePst=null;
+        List<FacilitySchedule> actualUsage=new ArrayList<FacilitySchedule>();
         try{
+            stmt=con.createStatement();
+            String listActualUsageStm="SELECT * FROM FacilitySchedule";
+            ResultSet usageRS=stmt.executeQuery(listActualUsageStm);
+            FacilitySchedule facilitySchedule = new FacilitySchedule();
+
+            while(usageRS.next()){
+                facilitySchedule.setScheduleId(usageRS.getString("scheduleId"));
+                facilitySchedule.setCustomerId(usageRS.getString("customerId"));
+                facilitySchedule.setUnitId(usageRS.getString("unitId"));
+                facilitySchedule.setStartDateTime(usageRS.getDate("startDateTime"));
+                facilitySchedule.setEndDateTime(usageRS.getDate("endDateTime"));
+            }
+            usageRS.close();
 
         }
         catch (SQLException se) {
@@ -149,7 +179,7 @@ public class FacilityUseDAO {
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
-        return null;
+        return actualUsage;
 
     }
 
@@ -157,11 +187,18 @@ public class FacilityUseDAO {
     /**
      * calcUsageRate()
      */
-    //TODO:Implementation
     public double calcUsageRate(){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
+        PreparedStatement usageRatePst=null;
+        double usageRate=0;
+        String usageRateStm="SELECT COUNT(scheduleId)/COUNT(unitId) as u_rate FROM FacilitySchedule, BuilingUnit";
         try{
+            ResultSet usageRateRS=stmt.executeQuery(usageRateStm);
+            System.out.println("FacilityUseDAO: *************** Query \" + actualUsageQuery);");
+            while(usageRateRS.next()){
+                usageRate=usageRateRS.getDouble("u_rate");
+            }
 
         }
         catch (SQLException se) {
@@ -169,7 +206,7 @@ public class FacilityUseDAO {
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
-        return 0;
+        return usageRate;
     }
 
 
