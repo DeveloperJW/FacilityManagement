@@ -25,7 +25,9 @@ public class FacilityUseDAO {
     public boolean isInUseDuringInterval(Date start, Date end){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
+        Boolean isUsing =false;
         try{
+
 
         }
         catch (SQLException se) {
@@ -33,7 +35,7 @@ public class FacilityUseDAO {
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
-        return false;
+        return isUsing;
     }
 
     /**
@@ -42,19 +44,42 @@ public class FacilityUseDAO {
     public boolean assignFacilityToUse(Facility facility){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
+        PreparedStatement addPst=null;
         try{
+            //insert facility
+            String addStm="INSERT INTO FacilitySchedule(scheduleId, unitId, startDateTime, endDateTime" +
+                    "customerId) VALUES (?,?,?,?,?)";
+            addPst.setString(1, "scheduleId");
+            addPst.setString(2,"unitId");
+            addPst.setObject(3, "startDateTime");
+            addPst.setObject(4, "endDateTime");
+            addPst.setString(5, "customerId");
+            addPst.executeUpdate();
 
         }
         catch (SQLException se) {
             System.err.println("FacilityUseDAO: Threw a SQLException retrieving the facility object.");
             System.err.println(se.getMessage());
             se.printStackTrace();
+        } finally {
+            try {
+                if (addPst != null) {
+                    addPst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            }catch (SQLException ex){
+                System.err.println("FacilityUseDAO: Threw a SQLException saving the Facility object.");
+                System.err.println(ex.getMessage());
+            }
         }
         return false;
     }
     /**
      * vacateFacility()
      */
+    //TODO: need
     public boolean vacateFacility(Facility facility){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;
@@ -132,6 +157,7 @@ public class FacilityUseDAO {
     /**
      * calcUsageRate()
      */
+    //TODO:Implementation
     public double calcUsageRate(){
         Connection con=DBHelper.getConnection();
         Statement stmt=null;

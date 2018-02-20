@@ -1,12 +1,14 @@
 package com.oop.model.FacilityMaintenance;
 
-public class MaintenanceProblem extends MaintenanceRequest {
+import com.oop.model.Facility.Facility;
+
+public class FacilityProblem extends MaintenanceRequest {
     private String maintProblemId;
     private String maintProblemType;
     private String maintProblemDetails;
     private boolean fixedOrNot;
 
-    public MaintenanceProblem(){
+    public FacilityProblem(){
         //default constructor
         super();
     }
