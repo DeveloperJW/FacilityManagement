@@ -60,6 +60,12 @@ public class FacilityAddress {
         this.zip=newZip;
     }
 
+    public String toString(){
+        String result="";
+        result="The address of the facility is: "+this.unit+" "+this.street+", "+this.city+", "
+                +this.state+", "+this.zip;
+        return result;
+    }
 
 
 }

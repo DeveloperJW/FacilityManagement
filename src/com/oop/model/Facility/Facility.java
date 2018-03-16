@@ -1,11 +1,14 @@
 package com.oop.model.Facility;
 
+import java.util.ArrayList;
+
 public class Facility {
     private String facilityId;
     private String facilityName;
     private int capacity;
     private String facilityType;
     private FacilityAddress facilityAddress;
+    private ArrayList<FacilityDetail> facilityDetail=new ArrayList<FacilityDetail>();
 
     public Facility(){
     //default constructor
@@ -53,6 +56,14 @@ public class Facility {
         this.facilityAddress=newFacilityAddress;
     }
 
+    public String toString(){
+        String result="";
+        result="FacilityID: "+this.facilityId+"\n";
+        result+="FacilityName: "+this.facilityName+"\n";
+        result+="Capacity: "+this.capacity+"\n";
+        result+="Address: "+this.facilityAddress.toString();
+        return result;
+    }
 
 
 

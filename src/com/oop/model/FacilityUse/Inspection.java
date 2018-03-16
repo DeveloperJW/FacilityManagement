@@ -7,9 +7,11 @@ public class Inspection {
     private String inpectorName;
     private String inspectionResult;
     private Date InspectionDate;
+    private FacilitySchedule facilitySchedule;
 
-    public Inspection(){
+    public Inspection(FacilitySchedule schedule){
     //default constructor
+        this.facilitySchedule=schedule;
     }
     ///methods
     public String getInspectionId(){
@@ -50,6 +52,14 @@ public class Inspection {
 
     public void setInspectionDate(Date newDate){
         this.InspectionDate=newDate;
+    }
+
+    public String toString(){
+        String result="";
+        result="The information about Inspection is as followings:"+"\n";
+        result+="Inspection requested by "+facilitySchedule.getCustomerId()+"\n";
+        result+="Inspection requested on date"+InspectionDate+"\n";
+        return result;
     }
 
 }

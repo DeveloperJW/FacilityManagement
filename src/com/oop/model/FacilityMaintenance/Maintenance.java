@@ -11,6 +11,7 @@ public class Maintenance {
     private String workerContactNum;
     private Date startDateTime;
     private Date endDateTime;
+    private MaintenanceRequest request;
 
     public Maintenance(){
     //default constructor
@@ -81,5 +82,9 @@ public class Maintenance {
 
     public long getTimeDurationInHour(Date start, Date end){
         return (end.getTime()-start.getTime())/(60*60*1000);
+    }
+
+    public MaintenanceRequest getRequest() {
+        return request;
     }
 }

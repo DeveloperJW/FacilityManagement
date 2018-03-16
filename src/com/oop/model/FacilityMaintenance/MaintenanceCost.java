@@ -1,5 +1,7 @@
 package com.oop.model.FacilityMaintenance;
 
+import com.oop.model.Facility.Facility;
+
 import java.util.Date;
 
 public class MaintenanceCost extends Maintenance{
@@ -8,9 +10,11 @@ public class MaintenanceCost extends Maintenance{
     private static double laborHourlyRate=25;
     private double laborCost;
     private boolean paidOrNot;
+    private Maintenance maintenance;
 
-    public MaintenanceCost(){
-        super();
+    public MaintenanceCost(Maintenance m){
+        //super();
+        this.maintenance=m;
 
     }
 
@@ -36,9 +40,9 @@ public class MaintenanceCost extends Maintenance{
      * @return the total labor cost based on maintenance time duration
      */
     public double getLaborCost(){
-        Date startTime=super.getStartDateTime();
-        Date endTime=super.getEndDateTime();
-        long TimeDuration=super.getTimeDurationInHour(startTime,endTime);
+        Date startTime=maintenance.getStartDateTime();
+        Date endTime=maintenance.getEndDateTime();
+        long TimeDuration=maintenance.getTimeDurationInHour(startTime,endTime);
         return TimeDuration*laborHourlyRate;
 
     }
@@ -58,4 +62,5 @@ public class MaintenanceCost extends Maintenance{
     public void setPaidOrNot(Boolean newPaymentStatus){
         this.paidOrNot=newPaymentStatus;
     }
+
 }

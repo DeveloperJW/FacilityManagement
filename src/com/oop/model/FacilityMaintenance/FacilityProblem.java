@@ -44,4 +44,12 @@ public class FacilityProblem extends MaintenanceRequest {
     public void setFixedOrNot(Boolean newStatus){
         this.fixedOrNot=newStatus;
     }
+
+    public String toString(){
+        String result="Facility Name: "+this.getFacility().getFacilityName()+"\n";
+        result+="Problem Type: "+this.maintProblemType+"\n";
+        result+="Problem details: "+this.maintProblemDetails+"\n";
+        result+="Current status: "+this.fixedOrNot+"\n";
+        return result;
+    }
 }

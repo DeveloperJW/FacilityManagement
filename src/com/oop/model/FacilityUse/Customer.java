@@ -60,4 +60,13 @@ public class Customer {
     public void setSsn(String newSsn){
         this.ssn=newSsn;
     }
+
+    public String toString(){
+        String result="";
+        result="CustomerName: "+this.lastName+", "+this.firstName+"\n";
+        result+="CutomerAddress: "+this.address+"\n";
+        result+="Customer Contact Number: "+this.contactNumber+"\n";
+
+        return result;
+    }
 }
