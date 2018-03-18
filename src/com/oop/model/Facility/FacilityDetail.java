@@ -3,9 +3,8 @@ package com.oop.model.Facility;
 public class FacilityDetail {
     private String details;
 
-    public FacilityDetail(String someDetails){
+    public FacilityDetail(){
         //default constructor
-        this.details=someDetails;
     }
 
     public String getDetails() {
@@ -15,6 +14,7 @@ public class FacilityDetail {
     public void setDetails(String detail){
         this.details=detail;
     }
+
     public String toString(){
         return "Facility details: "+this.details;
     }

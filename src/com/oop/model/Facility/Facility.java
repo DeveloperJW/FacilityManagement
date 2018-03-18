@@ -15,6 +15,12 @@ public class Facility {
     }
 
     //methods
+
+
+    public ArrayList<FacilityDetail> getFacilityDetail() {
+        return facilityDetail;
+    }
+
     public String getFacilityId(){
         return facilityId;
     }

@@ -38,12 +38,25 @@ public class FacilityClient {
         facilityAddress2.setUnit("Unit 111");
         facilityAddress2.setZip("60626");
 
+        //facility detail example
+        FacilityDetail detail1=new FacilityDetail();
+        detail1.setDetails("This is a resident hall for students. The name of the facility is Loyola Hall. ");
+
+
         //some test methods
         //ExampleFacility1();
         //ExampleFacility2();
         addNewFacilityTest(facility1);
         System.out.println();
         addNewFacilityTest(facility2);
+        System.out.println();
+        //test add new detail test
+        addNewDetailTest(facility1,detail1);
+        System.out.println();
+        System.out.println("The capacity of facility 1 is :"+getCapacityTest(facility1));
+        System.out.println("The capacity of facility 2 is :"+getCapacityTest(facility2));
+
+
 
 
     }
@@ -55,6 +68,15 @@ public class FacilityClient {
         System.out.println("New facility have been added. ");
     }
 
-    //
+    public static void addNewDetailTest(Facility facility,FacilityDetail detail){
+        FacilityManagement facilityManagement1= new FacilityManagement();
+        facilityManagement1.addFacilityDetail(facility,detail);
+        //facilityManagement1.listFacilityDetail();
+    }
+
+    public static int getCapacityTest(Facility facility){
+        return facility.getCapacity();
+    }
+
 
 }
