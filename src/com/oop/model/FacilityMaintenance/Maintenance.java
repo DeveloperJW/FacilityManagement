@@ -87,4 +87,13 @@ public class Maintenance {
     public MaintenanceRequest getRequest() {
         return request;
     }
+
+    public String toString(){
+        String result="";
+        result="MaintenanceID: "+this.maintenanceId+"\n";
+        result+="Problem Type: "+this.problemType+"\n";
+        result+="Worker Name: "+this.workerName+"\n";
+        result+="Worker Contact Number: "+this.workerContactNum.toString();
+        return result;
+    }
 }

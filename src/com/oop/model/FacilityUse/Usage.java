@@ -52,7 +52,7 @@ public class Usage {
         estResevedEndTime=calendar.getTime();
         //
         boolean result=false;
-        //todo: check the logic of the scheduling
+        //Done: check the logic of the scheduling
         result=(startTime.compareTo(date)*endTime.compareTo(estResevedEndTime)<0);
         return result;
     }

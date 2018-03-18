@@ -127,7 +127,8 @@ public class FacilityUseDAO {
             System.out.println("FacilityUseDAO: *************** Query \" + listInspectionsQuery);");
             //Get Facility
             Facility facility=new Facility();
-            Inspection inspection=new Inspection();
+            FacilitySchedule facilitySchedule=new FacilitySchedule();
+            Inspection inspection=new Inspection(facilitySchedule);
 
             while(inspectionRS.next()) {
                 inspection.setInspectionId(inspectionRS.getNString("inspectionId"));

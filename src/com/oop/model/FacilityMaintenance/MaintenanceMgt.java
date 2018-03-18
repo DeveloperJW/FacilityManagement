@@ -27,8 +27,10 @@ public class MaintenanceMgt {
         return maintenanceRequests;
     }
 
-    public Object listMaintenance(){
-        return maintenances;
+    public void listMaintenance(){
+        for (Maintenance maint: maintenances){
+            System.out.println(maint);
+        }
     }
 
     public Object listMaintenanceRequests(){
@@ -42,7 +44,7 @@ public class MaintenanceMgt {
         System.out.println("The maintenance request is saved. ");
     }
 
-    public void scheduleMaintenance(Maintenance newM){
+    public void addMaintenance(Maintenance newM){
         maintenances.add(newM);
     }
 
