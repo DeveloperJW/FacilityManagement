@@ -43,10 +43,12 @@ public class FacilityManagement {
         return facility.getCapacity();
     }
 
+    /**
     public void addFacilityDetail(Facility facility, FacilityDetail detail){
         facility.getFacilityDetail().add(detail);
         System.out.println("New Facility Detail has been added. ");
     }
+     */
 
     public void listFacilityDetail(){
         for (FacilityDetail detail: detailsArrayList){

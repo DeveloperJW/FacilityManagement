@@ -43,6 +43,4 @@ public class FacilityMaintClient {
         maintenanceMgt.listMaintenance();
         System.out.println("New maintenance have been added. ");
     }
-
-    //
 }

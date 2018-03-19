@@ -8,7 +8,7 @@ public class Facility {
     private int capacity;
     private String facilityType;
     private FacilityAddress facilityAddress;
-    private ArrayList<FacilityDetail> facilityDetail=new ArrayList<FacilityDetail>();
+    private String facilityDetail="";
 
     public Facility(){
     //default constructor
@@ -16,9 +16,14 @@ public class Facility {
 
     //methods
 
-
-    public ArrayList<FacilityDetail> getFacilityDetail() {
+    //Facility Detail
+    public String getFacilityDetail() {
         return facilityDetail;
+    }
+
+    public void setFacilityDetail(String newDetails){
+        facilityDetail=newDetails;
+
     }
 
     public String getFacilityId(){
@@ -60,6 +65,12 @@ public class Facility {
 
     public void setFacilityAddress(FacilityAddress newFacilityAddress){
         this.facilityAddress=newFacilityAddress;
+    }
+
+
+    //TODO: add a method to add details or connect Facility with Facility Details
+    public void addFacilityDetail(String newDetail){
+        facilityDetail+=newDetail;
     }
 
     public String toString(){
